@@ -1,4 +1,4 @@
-import {sum, mul, sub, div} from '.';
+import {sum, mul, sub, div, random} from '.';
 
 test('Adding 1 + 1 equals 2', () => {
     expect(sum(1, 1)).toBe(2);
@@ -57,4 +57,35 @@ describe('Dividing', () => {
     ])('Dividing $a / $b equals $expected', ({a, b, expected}) => {
         expect(div(a, b)).toBe(expected);
     });
+});
+
+describe('Random with default params (min=0 and max=1)', () => {
+    test.each(
+        Array.from({length: 30}).map(() => ({randomValue: random()})),
+    )('random value $randomValue', ({randomValue}) => {
+        // Проверяем, что это число
+        expect(randomValue).toEqual(expect.any(Number));
+            
+        // Проверяем, что оно в диапазоне от 0 до 1 (дефолтное поведение)
+        expect(randomValue).toBeGreaterThanOrEqual(0);
+        expect(randomValue).toBeLessThanOrEqual(1);
+    })
+});
+
+describe.each([
+    {methodParams: {min: 0, max: 4}, length: 6},
+    {methodParams: {min: -5, max: 2}, length: 10},
+])('Random with params $methodParams', ({length, methodParams}) => {
+    test.each(
+        Array.from({length}).map(() => {
+            return {min: methodParams.min, max: methodParams.max, randomValue: random(methodParams)}
+        })
+    )('random value ($randomValue) between: min=$min, max=$max', ({min, max, randomValue}) => {
+        // Проверяем, что это число
+        expect(randomValue).toEqual(expect.any(Number));
+            
+        // Проверяем, что оно в диапазоне от 0 до 1 (дефолтное поведение)
+        expect(randomValue).toBeGreaterThanOrEqual(min);
+        expect(randomValue).toBeLessThanOrEqual(max);
+    })
 });
