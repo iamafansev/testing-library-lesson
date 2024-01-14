@@ -30,11 +30,11 @@ test('check user schema', async () => {
 
 const fakeFetchUserWithError = () => {
     return Promise.reject('Some error');
-}
+};
 
 test('promise rejected', async () => {
     return expect(fakeFetchUserWithError()).rejects.toMatch('Some error');
-})
+});
 
 test('promise rejected with try/catch', async () => {
     try {
@@ -42,6 +42,5 @@ test('promise rejected with try/catch', async () => {
     } catch (err) {
         expect(err).toMatch('Some error');
     }
-})
-  
+});
   
