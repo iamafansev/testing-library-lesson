@@ -1,0 +1,12 @@
+{
+  "search.followSymlinks": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.tabCompletion": "on",
+  "editor.quickSuggestions": {
+    "other": true,
+    "strings": true,
+    "comments": true
+  },
+  "commentTranslate.multiLineMerge": false
+}
