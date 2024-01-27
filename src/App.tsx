@@ -1,13 +1,19 @@
-import Logo from "@/assets/logo.png";
-import HelloWorld from "@/components/HelloWorld/HelloWorld";
+import { useEffect } from "react";
+
+import {useFetchUsers} from "@/hooks/useFetchUsers";
 
 import styles from "./App.module.css";
 
 export default function App() {
+  const [fetchUsers, {data, state, fetchMoreUsers}] = useFetchUsers();
+
+  useEffect(() => {
+    fetchUsers({quantity: 20});
+  }, []);
+
   return (
     <main className={styles.main}>
-      <img className={styles.logo} alt="React logo" width="400px" src={Logo} />
-      <HelloWorld msg="Hello React + TypeScript + Vite" />
+      <h1>Users</h1>
     </main>
   );
 }
