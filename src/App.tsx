@@ -1,16 +1,17 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import {
+  ChangeEventHandler,
+  FormEventHandler,
   useCallback,
   useEffect,
   useState,
-  ChangeEventHandler,
-  FormEventHandler,
 } from "react";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Spinner from "react-bootstrap/Spinner";
 import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Spinner from "react-bootstrap/Spinner";
 
 import { useFetchUsers } from "@/hooks/useFetchUsers";
 
@@ -53,8 +54,8 @@ export default function App() {
       <Container>
         <h1>Generate users</h1>
         <Form
-          onSubmit={onSubmit}
           className="d-flex align-items-center flex-column my-3 w-100"
+          onSubmit={onSubmit}
         >
           <Form.Label className="">
             Quantity
@@ -83,7 +84,7 @@ export default function App() {
           ) : (
             <div>
               {data?.map(user => (
-                <Card key={user.id}>
+                <Card key={user.id} data-testid={`user-card-${user.id}`}>
                   <Card.Body>
                     <Card.Title>{user.username}</Card.Title>
                     <Card.Text>{user.website}</Card.Text>
@@ -94,8 +95,8 @@ export default function App() {
               <Button
                 variant="primary"
                 className="my-5"
-                onClick={fetchMore}
                 disabled={state === "fetchMore"}
+                onClick={fetchMore}
               >
                 Fetch more users
               </Button>

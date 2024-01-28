@@ -1,10 +1,10 @@
+import { act, renderHook, waitFor } from "@testing-library/react";
 import { http, HttpResponse } from "msw";
-import { renderHook, act, waitFor } from "@testing-library/react";
 
 import { server } from "../../mocks/node";
+import quantity10Stub from "../../stubs/quantity-10.json";
+import quantity20Stub from "../../stubs/quantity-20.json";
 import { useFetchUsers } from "./useFetchUsers";
-import quantity10Stub from "./stubs/quantity-10.json";
-import quantity20Stub from "./stubs/quantity-20.json";
 
 describe("App", () => {
   it("load users and fetch more users", async () => {

@@ -16,18 +16,18 @@ describe("Timers", () => {
   });
 
   test("Mock timer", () => {
-    expect(onSuccessMock).not.toBeCalled();
+    expect(onSuccessMock).not.toHaveBeenCalled();
     fakeLongTask(onSuccessMock);
     jest.runAllTimers();
-    expect(onSuccessMock).toBeCalledTimes(1);
+    expect(onSuccessMock).toHaveBeenCalledTimes(1);
   });
 
   test("Mock timer by time", () => {
-    expect(onSuccessMock).not.toBeCalled();
+    expect(onSuccessMock).not.toHaveBeenCalled();
     fakeLongTask(onSuccessMock);
     jest.advanceTimersByTime(15000);
-    expect(onSuccessMock).not.toBeCalled();
+    expect(onSuccessMock).not.toHaveBeenCalled();
     jest.advanceTimersByTime(15000);
-    expect(onSuccessMock).toBeCalledTimes(1);
+    expect(onSuccessMock).toHaveBeenCalledTimes(1);
   });
 });
